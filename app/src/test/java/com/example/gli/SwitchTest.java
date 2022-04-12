@@ -28,6 +28,7 @@ public class SwitchTest {
      * @param number
      * @return
      */
+    @Test
     public int testSwitch(int number) {
         switch (number) {
             case 1:
