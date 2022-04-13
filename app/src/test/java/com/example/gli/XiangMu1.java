@@ -17,11 +17,11 @@ public class XiangMu1 {
 
         cast.setAccount(acco);
 
-        cast.getAccount().wirhdraw(100);
-        cast.getAccount().deposit(980);
-        cast.getAccount().deposit(2000);
-        System.out.println("id:" + cast.getAccount().getId() + "\t balance:" + cast.getAccount().getBalance()
-                + "\tannuallnterestRate:" + cast.getAccount().getAnnuallnterestRate() * 100 + "%");
+        cast.getAccount().deposit(100);
+        cast.getAccount().wirhdraw(980);
+        cast.getAccount().wirhdraw(2000);
+        System.out.println("Customer [" + cast.getFirstName() + " ," + cast.getLastName() + "] has a account id is " + cast.getAccount().getId() + "\t balance is:" + cast.getAccount().getBalance()
+                + "\tannuallnterestRate is:" + cast.getAccount().getAnnuallnterestRate() * 100 + "%");
 
     }
 }
