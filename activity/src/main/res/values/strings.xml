@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">activity</string>
+    <string name="second_activity">第二个Activity界面</string>
+    <string name="start_three_activity">启动第三个Activity界面</string>
+    <string name="three_activity">第三个Activity</string>
+    <string name="main_activity">主Activity</string>
+    <string name="bind_start_three_activity">携带数据启动第三个Activity</string>
+    <string name="return_main_activity">返回第一个Activity</string>
+    <string name="destroy_second_activity">销毁第二个Activity</string>
+
+</resources>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.ThreeActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/three_activity"
+        android:gravity="center"
+        android:textSize="20dp"
+        />
+
+    <Button
+        android:id="@+id/btn_return_data_second"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="绑定数据返回"
+        android:textAllCaps="false"
+        />
+
+    <Button
+        android:id="@+id/btn_return_second"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="一般返回"
+        android:textAllCaps="false"
+        />
+    <EditText
+       android:id="@+id/et_three_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="000"
+        android:textSize="20dp"
+        />
+
+    <Button
+        android:id="@+id/btn_start_second_from_three_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="启动第二个Activity"
+        android:textAllCaps="false"
+        />
+    <Button
+        android:id="@+id/btn_start_main_from_three_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="启动第一个Activity"
+        android:textAllCaps="false"
+        />
+</LinearLayout>

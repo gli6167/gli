@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/main_activity"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:textColor="@color/purple_200"
+        android:background="@color/black"
+        />
+    <Button
+        android:id="@+id/btn_start_second_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="启动第二个Activity"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:id="@+id/btn_start_three_from_main_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="启动第三个Activity"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:id="@+id/btn_start_main_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="启动第一个Activity"
+        android:textAllCaps="false"/>
+
+</LinearLayout>

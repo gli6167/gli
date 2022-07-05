@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.SecondActivity">
+
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/second_activity"
+    android:gravity="center"
+    android:textSize="20dp"
+    />
+    <Button
+        android:id="@+id/btn_start_three_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/start_three_activity"
+        android:textAllCaps="false"
+        />
+    <Button
+        android:id="@+id/btn_bind_start_three_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/bind_start_three_activity"
+        android:textAllCaps="false"
+        />
+
+    <Button
+        android:id="@+id/btn_start_main_from_second_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="启动第一个Activity"
+        android:textAllCaps="false"
+        />
+
+    <Button
+        android:id="@+id/btn_start_second_from_second_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="启动第二个Activity"
+        android:textAllCaps="false"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:id="@+id/et_second_data"
+        />
+</LinearLayout>
