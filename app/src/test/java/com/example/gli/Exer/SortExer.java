@@ -1,4 +1,4 @@
-package com.example.gli;
+package com.example.gli.Exer;
 
 import androidx.annotation.NonNull;
 

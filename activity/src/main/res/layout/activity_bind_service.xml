@@ -5,45 +5,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.MainActivity">
-
+    tools:context=".activity.BindServiceActivity">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/main_activity"
         android:textSize="20dp"
+        android:text="ActivityApp中的启动ServiceApp中服务的界面"
         android:gravity="center"
-        android:textColor="@color/purple_200"
-        android:background="@color/black"
         />
     <Button
-        android:id="@+id/btn_start_second_activity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="启动第二个Activity"
-        android:textAllCaps="false"/>
-
+        android:text="启动ServiceApp中的服务"
+        android:textAllCaps="false"
+        android:id="@+id/btn_start_serviceApp"/>
     <Button
-        android:id="@+id/btn_start_three_from_main_activity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="启动第三个Activity"
-        android:textAllCaps="false"/>
-
+        android:text="停止ServiceApp中的服务"
+        android:textAllCaps="false"
+        android:id="@+id/btn_stop_serviceApp"/>
     <Button
-        android:id="@+id/btn_start_main_activity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="启动第一个Activity"
-        android:textAllCaps="false"/>
-
+        android:text="绑定ServiceApp中的服务"
+        android:textAllCaps="false"
+        android:id="@+id/btn_bind__serviceApp"/>
     <Button
-        android:id="@+id/btn_start_BindService_from_main_activity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="启动远程服务的Activity"
-        android:textAllCaps="false"/>
+        android:text="解绑ServiceApp中的服务"
+        android:textAllCaps="false"
+        android:id="@+id/btn_unBind_serviceApp"/>
 
-
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_bindService_data"
+        />
 
 </LinearLayout>

@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 rootProject.name = "gli"
 include ':app'
 include ':activity'
+include ':service'

@@ -1,4 +1,4 @@
-package com.example.gli;
+package com.example.gli.Exer;
 
 import org.junit.Test;
 //        添加必要的构造器，综合应用构造器的重载，this关键字。

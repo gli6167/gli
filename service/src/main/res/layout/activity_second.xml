@@ -5,45 +5,44 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.MainActivity">
-
+    tools:context=".activity.SecondActivity">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/main_activity"
+        android:text="界面二"
         android:textSize="20dp"
-        android:gravity="center"
-        android:textColor="@color/purple_200"
-        android:background="@color/black"
+        android:gravity="center"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="启动服务"
+        android:id="@+id/btn_start_service_second"
         />
     <Button
-        android:id="@+id/btn_start_second_activity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="启动第二个Activity"
-        android:textAllCaps="false"/>
+        android:text="停止服务"
+        android:id="@+id/btn_stop_service_second"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="绑定服务"
+        android:onClick="bindService"/>
 
     <Button
-        android:id="@+id/btn_start_three_from_main_activity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="启动第三个Activity"
-        android:textAllCaps="false"/>
+        android:text="解绑服务"
+        android:onClick="ubBindService">
 
-    <Button
-        android:id="@+id/btn_start_main_activity"
+    </Button>
+
+
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="启动第一个Activity"
-        android:textAllCaps="false"/>
-
-    <Button
-        android:id="@+id/btn_start_BindService_from_main_activity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="启动远程服务的Activity"
-        android:textAllCaps="false"/>
-
-
+        android:textSize="20dp"
+        android:hint="000"
+        android:id="@+id/et_result_second"/>
 
 </LinearLayout>

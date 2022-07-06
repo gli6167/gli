@@ -10,40 +10,37 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/main_activity"
+        android:text="客户端主页面"
         android:textSize="20dp"
         android:gravity="center"
-        android:textColor="@color/purple_200"
-        android:background="@color/black"
         />
     <Button
-        android:id="@+id/btn_start_second_activity"
+        android:id="@+id/btn_start_local_service_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="启动第二个Activity"
-        android:textAllCaps="false"/>
+        android:text="启动服务"
+        />
+    <Button
+        android:id="@+id/btn_stop_local_service_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="停止服务"
+        />
+    <Button
+        android:id="@+id/btn_bind_service_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="绑定服务"/>
 
     <Button
-        android:id="@+id/btn_start_three_from_main_activity"
+        android:id="@+id/btn_unbind_service_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="启动第三个Activity"
-        android:textAllCaps="false"/>
-
+        android:text="解绑服务"/>
     <Button
-        android:id="@+id/btn_start_main_activity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="启动第一个Activity"
-        android:textAllCaps="false"/>
-
-    <Button
-        android:id="@+id/btn_start_BindService_from_main_activity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="启动远程服务的Activity"
-        android:textAllCaps="false"/>
-
-
+        android:text="启动界面二"
+        android:id="@+id/btn_start_second_activity"/>
 
 </LinearLayout>

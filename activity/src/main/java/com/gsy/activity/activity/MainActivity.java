@@ -14,7 +14,11 @@ import com.orhanobut.logger.Logger;
  * Activity的生命周期
  */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    private Button btn_start_second_activity,btn_start_three_activity,btn_start_main_activity;
+    private Button  btn_start_second_activity,
+                    btn_start_three_activity,
+                    btn_start_main_activity,
+                    btn_start_BindService_from_main_activity;
+
 
     public MainActivity(){
 
@@ -28,11 +32,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_start_second_activity = findViewById(R.id.btn_start_second_activity);
         btn_start_main_activity=findViewById(R.id.btn_start_main_activity);
         btn_start_three_activity=findViewById(R.id.btn_start_three_from_main_activity);
+        btn_start_BindService_from_main_activity=findViewById(R.id.btn_start_BindService_from_main_activity);
 
         btn_start_second_activity.setOnClickListener(this);
         btn_start_main_activity.setOnClickListener(this);
         btn_start_three_activity.setOnClickListener(this);
+        btn_start_BindService_from_main_activity.setOnClickListener(this);
         Logger.d("3---->Activity" + "---->" + "onCreate:第三个activity创建");
+
+
+
+
     }
 
 
@@ -49,6 +59,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.btn_start_three_from_main_activity:
                 startActivity(new Intent(MainActivity.this,ThreeActivity.class));
+                break;
+            case R.id.btn_start_BindService_from_main_activity:
+                startActivity(new Intent(MainActivity.this,BindServiceActivity.class));
                 break;
         }
     }

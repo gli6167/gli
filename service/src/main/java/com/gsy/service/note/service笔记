@@ -1,0 +1,78 @@
+Service 服务
+    服务在主线程运行
+    服务不关联任何界面
+    应用退出界面服务还可以运行
+    主线程不能执行耗时操作，所以service可以启动分线程
+    必须重写子类MyService继承自Service类
+    可以在Service中进行不与Activity界面关联的操作
+        后台播放音乐
+        下载数据等
+    本地服务 本App中运行的服务被本App中的Activity启动
+        启动服务
+        停止服务
+        绑定服务
+        解绑服务
+
+
+    远程服务：本App中运行的服务被另一个App中的Activity启动
+
+    此intent应为显示intent
+
+        创建一个intent对象，设置显示启动的Intent；需要Service所在的包名及Service类名
+        Intent intent = new Intent;
+        intent.setComponent(new ComponentName(包名，类名));
+        启动服务 A-App中Activity调用startService（intent）
+        停止服务 A-App中Activity调用stopService（intent）
+        绑定服务 A-App中Activity调用bindService（intent）
+        解绑服务 A-App中Activity调用unbindService（intent）
+        不同应用，可以通过AIDL来交换数据-通过绑定同一个Service来传递数据
+                 AIDL包名及类名及类中的方法必须全部相同。
+
+
+    服务的生命周期
+
+    启动服务
+    创建服务-->启动服务-->销毁服务
+    onCreate-->onStartCommand-->onDestroy
+    onCreate在Service中只调用一次，onStartCommand 方法被调用多次，onDestroy调用一次。
+    多个Activity调用StartService，只要Service被Create，那么只会调用onStartCommand来启动服务
+
+    绑定服务
+    创建服务-->启动服务-->绑定服务-->解绑服务-->销毁服务
+    onCreate-->onBind-->onUnBind-->onDestroy
+    onCreate方法只会调用一次，onBind方法绑定后如果没有调用onUnbind方法解绑，那么onBind方法只会调用一次，只有当解绑之后在调用onBind才会重新绑定
+    onDestroy方法只会调用一次。
+    启动+绑定
+    onCreate只会调用一次，也就是说当Activity启动一个服务时，只会创建一个Service实例
+    onDestroy方法只会调用一次，onDestroy方法调用的前提，1、所有onBind都调用过onUnbind进行解绑，
+                                                   2、Activity调用stopService
+
+
+
+    使用服务必须重写一个服务类来继承Service类，并重写方法
+
+    只启动服务，Activity没办法与Service进行通信
+    启动服务：通过activity调用startService来启动一个服务，
+    onCreate只会调用一次，也就是说当Activity启动一个服务时，只会创建一个Service实例
+
+    停止服务：通过Activity调用stopService来停止一个服务
+    onDestroy只会调用一次，销毁这个服务
+
+
+    绑定服务：
+    通过绑定启动服务可以进行Service与Activity进行通信
+
+
+    在重写的Service中写一个类继承自Bunder
+    在Service中在onBind方法返回此Bundle
+    在Activity中通过bindService中的onServiceConnected方法可以将service转化为Service中继承Bind的类转换方法为（Servicebinder）service
+    然后就可以得到Service中的数据。
+
+    解绑服务：解绑服务Activity调用onUnbindService(ServiceCoonection)传入的是绑定服务的ServiceCoonection
+
+
+
+
+
+
+
