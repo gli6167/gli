@@ -53,9 +53,19 @@ public class MyService extends Service {
     @Override
     public boolean onUnbind(Intent intent) {
         Log.d("TAG", "MyService--"+"onUnbind: ");
-        return super.onUnbind(intent);
+        return true;
     }
-//销毁服务
+
+    //调用此方法来判断service被activity是否再次绑定，如需调用此方法，onUnbind必须返回true；
+    //当onUnbind返回true时，再次调用onbind方法时会走onRebind，而不会走onbind
+    //这只是个标志，标志是否是第一次绑定该服务，前提是onUnbind返回false
+    @Override
+    public void onRebind(Intent intent) {
+        super.onRebind(intent);
+        Log.i("TAG", "MyService--"+"onRebind: ");
+    }
+
+    //销毁服务
     @Override
     public void onDestroy() {
         Log.d("TAG", "MyService--"+"onDestroy: ");

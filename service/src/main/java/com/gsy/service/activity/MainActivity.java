@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_unbind_service_main://解绑服务
                 if(coon!=null){
                     unbindService(coon);
-                    coon=null;
+
                 }else {
                     Log.i("TAG", "MainActivity--"+"onClick: "+"解绑-服务未注册");
                 }

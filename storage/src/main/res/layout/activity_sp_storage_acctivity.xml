@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.SpStorageActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:textSize="20dp"
+        android:layout_height="wrap_content"
+        android:text="sp存储主界面"
+        android:gravity="center"
+        />
+
+    <Button
+        android:id="@+id/btn_save_file_internal_sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="保存文件到内部存储"
+        />
+
+    <Button
+        android:id="@+id/btn_save_file_storage_android_sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="保存文件到外部专享存储目录"
+        />
+
+    <Button
+        android:id="@+id/btn_save_file_storage_sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="保存文件到外部共享存储目录"
+        />
+
+    <EditText
+        android:id="@+id/et_file_name_sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入保存的文件名称"/>
+    <EditText
+        android:id="@+id/et_file_content_sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入保存的文件内容"/>
+
+    <Button
+        android:id="@+id/btn_reader_file_sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="读取sp文件"
+        />
+
+</LinearLayout>

@@ -46,8 +46,6 @@ public class MyService2 extends Service {
               return data;
           }
       };
-
-
     }
 
     @Override

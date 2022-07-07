@@ -64,10 +64,10 @@ private ServiceConnection coon = new ServiceConnection() {
 
     @Override
     public void onServiceConnected(ComponentName name, IBinder service) {
-        String serviceActivityRequest = et_result_second.getText().toString().trim();
+        String serviceActivityRequest = et_result_second.getText().toString().trim();//得到et的数据
         ISideService myService = ISideService.Stub.asInterface(service);
         try {
-            myService.setData(serviceActivityRequest);
+            myService.setData(serviceActivityRequest);//将数据保存在Service中
         } catch (RemoteException e) {
             e.printStackTrace();
         }

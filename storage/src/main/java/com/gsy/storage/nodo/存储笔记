@@ -1,0 +1,166 @@
+一      数据存储必须从三个方面来了解
+        1、数据存储的位置
+            -内部存储
+                应用内部存储"文件"类型数据默认保存在 data/data/Android/packagerName/file目录下
+                应用内部存储"sp"类型数据默认保存在  data/data/Android/packagerName/shared_prefs目录下
+                应用内部存储"数据库"类型数据默认保存在 data/data/Android/packagerName/databases目录下
+
+                ”文件“类型数据可以指定存储位置
+                ”数据库"类型数据可以指定保存位置
+
+            -外部存储
+                应用专属存储空间：Storage/Android/packagerName
+                     ”文件“类型数据
+                     ”数据库“类型数据
+
+                数据共享空间：Storage/
+                     ”文件”类型数据
+                     ”数据库“类型数据
+
+
+        2、数据量的大小及格式
+            -文件 可保存任意数据
+            -sp 键值对：以Xml形式保存数据
+            -数据库
+
+        3、数据的状态
+            -可持久化：Activity退出或者切换到后台，Activity中的数据保存
+            -不可持久化：Activity退出或切换到后台，Activity中的数据消失
+
+
+二    数据存储的状态
+                        写入的过程称为持久化
+         内存------------------------------>硬盘
+
+         内存中的数据：不可保存、手机应用退出或切换到后台数据就会消失
+
+         硬盘中的数据：持久化数据，数据将一直保存在硬盘中不会消失
+
+三     数据持久化功能
+
+          文件存储-将数据通过文件的形式保存在本地
+                -保存：在应用退出、切换到后台的时候，把App的数据存储到本地（存储方式：文件）
+                -读取：在应用进入、切换到前台的时候，将本地数据读取到App中（读取方式：文件）
+
+
+           sp存储-以键值对的形式存储数据、文件形式为XML，只有当前应用程序才可以对此文件进行读写
+
+
+          数据库存储-
+
+
+四      数据存储的位置的类别
+            1-内部存储 data/data/packageName/
+              -应用专属存储空间 内部存储空间中的目录应保存其他应用不应该访问的敏感文件
+
+                    -文件存储
+                          openFileOutput 文件默认保存在 data/data/packageName/files/自己命名的fileName
+                       可以给文件次年初指定存储位置
+                          openFileOutput的俩种模式
+                          mode_private 当fileName相同时，所写入的内容会覆盖以前的内容
+                          mode_append 当fileName相同时，所写入的内容会追加在以前的内容之后
+                                      fileName不同时，创造新文件
+
+
+                    sp存储
+                       不能给sp存储指定存储位置，sp只有默认保存位置
+                          sp存储的数据本App中所有Activity都可访问
+                          sp只能保存6种基本数据类型：String int long boolean float
+                          context.getSharedPreferences 得到sp对象
+                          sp.edit得到edit对象
+                          edit.putXxx保存数据
+                          保存好后通过edit.apply异步提交
+                                    edit.commit同步提交
+                                    提交之后数据就保存在：data/data/packageName/shared_prefs/自己命名的fileName文件以xml形式保存（map）
+                          sp.getXxx读取数据-读取数据时根据Key得到值，需要传入默认值
+
+
+                    3、数据库存储
+                          sqlite默认存储在data/data/packageName/databases/数据库名称
+                           1、创建数据库
+                                         1、建库
+                                         SQLiteOpenHelper 帮助类
+                                           创建NyDatabase 继承 SQLiteOpenHelper
+                                             在类中通过构造方法创建数据库，指定数据库名称、版本号，及上下文
+
+                                         2、建表
+                                         在MyDataBase中的onCreate方法创建数据表
+                                                通过db.execSQL执行数据表创建的SQ语句
+                                                1-建表语句 ：建表语句本身是字符串类型
+                                                create table 表名 (id integer primary key autoincrement,name varchar,salary double,birthday date);
+                                                                            id id的类型  指定唯一主键   主键自增长
+                                                               数据库           Java
+                                                                表名            对象类名
+                                                                表的列名         对象的属性/成员变量
+                                                                SQ建表语句：属性名+空格+属性类型
+                                                                           俩属性之间用"逗号"隔开
+                                                                           所有属性应包围在一对"小括号"中
+                                                                           最后用"分号"结尾
+
+                                                2-数据表常见数据类型
+                                                                  INT/INTEGER : 整数
+                                                                  FLOAT/DOUBLE : 小数
+                                                                  CHAR/VARCHAR/TEXT : 字符串文本
+                                                                  BLOB : 文件
+                                                                  DATE/ DATETIME : 日期/日期时间
+
+
+                                         3、保存数据库数据
+                                              数据库创建完成后需要在Activity中实例化MyDatabase对象，用来保存Activity中的数据
+                                              1、通过构造函数实例化对象
+                                              2、myDataBase.getWritableDatabase将数据库保存的文件写入到磁盘
+                                              3、myDataBase.getReadableDatabase()将磁盘文件写入到数据库
+
+
+
+                                         4、升级数据库版本
+                                         在MyDataBase中的 onUpgrade 方法升级数据库版本
+
+
+
+
+
+            2-外部存储 storage/
+             -应用专属存储空间、应用卸载的时候所有数据都会清除
+             storage/Android/data/packageName/fileName
+
+             -共享存储空间，应用卸载的时数据不会清除
+             storage/其他目录
+
+             在Android中为保护用户隐私，需要应用申请权限才能进行对外部存储中 本应用 以外的存储空间进行使用
+
+
+
+
+     IO流
+
+     文件存储
+         -首先判断操作的数据是字符流还是字节流，再根据操作的数据是要保存还是读取来打开输入或者输出流来操作数据
+
+     输入：读取外部数据到内存中
+     输出：将内存中的数据保存到硬盘中
+
+
+     字节流：以Stream结尾
+        字节输入流InputStream
+        字节输出流OutputStream
+     字符流：以Reader或Write结尾
+        字符输入流Reader
+        字符输出流Write
+
+     字节输入流：InputStream
+     字节输出流：OutputStream
+
+     字符输入流：Reader
+     字符输出流：Write
+
+
+
+
+
+
+
+
+
+
+

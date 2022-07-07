@@ -25,8 +25,8 @@ public class BindServiceActivity extends AppCompatActivity implements View.OnCli
     private EditText et_bindService_data;
     private Intent intent;
     private ServiceConnection coon;
-    private final String start_packageName = "com.gsy.activity";
-    private final String start_className = "com.gsy.activity.MyService2";
+    private final String start_packageName = "com.gsy.service";
+    private final String start_className = "com.gsy.service.service.MyService2";
 
 
     @Override
@@ -35,6 +35,7 @@ public class BindServiceActivity extends AppCompatActivity implements View.OnCli
         setContentView(R.layout.activity_bind_service);
         intent = new Intent();
         intent.setComponent(new ComponentName(start_packageName,start_className));//设置启动的service的包名及类名
+        intent.setAction("com.gsy.service.MyService2");
         findView();
         setClickListener();
         getServiceConnection();
@@ -47,8 +48,8 @@ public class BindServiceActivity extends AppCompatActivity implements View.OnCli
                 ISideService iSideService = ISideService.Stub.asInterface(service);
 
                 try {
-                    String data = iSideService.getData();
-                    et_bindService_data.setText(data);
+                    String data = iSideService.getData();//得到Service中被修改过的另一个App的Activity的数据
+                    et_bindService_data.setText(data);//将结果设置进去
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
