@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="主界面!"
+        android:textSize="20dp"
+        android:gravity="center"
+       />
+    <TextView
+        android:id="@+id/tv_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    <Button
+        android:id="@+id/btn_add_Fragment_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="动态添加一个Fragment"
+        android:textAllCaps="false"/>
+    <FrameLayout
+        android:id="@+id/fl_shou_fragment_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+
+<!--   <fragment-->
+<!--       android:name="com.gsy.fragment.fragment.FirstFragment"-->
+<!--       android:layout_width="match_parent"-->
+<!--       android:layout_height="match_parent"-->
+
+<!--       android:id="@+id/fragment_main">-->
+
+<!--   </fragment>-->
+
+</LinearLayout>

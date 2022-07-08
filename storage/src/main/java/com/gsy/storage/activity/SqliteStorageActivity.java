@@ -24,7 +24,6 @@ public class SqliteStorageActivity extends AppCompatActivity {
         myDataBase = new MyDataBase(SqliteStorageActivity.this);
         Log.i("TAG", "SqliteStorageActivity---->"+"createDb: ");
         myDataBase.getWritableDatabase();//将数据库写入硬盘
-        myDataBase.getReadableDatabase();
 
     }
 }

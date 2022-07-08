@@ -1,0 +1,83 @@
+Activity与Fragment的区别
+
+    Fragment 轻量级的Activity
+    Fragment是依赖与Activity,当Activity销毁，那么Fragment也会跟着销毁，而Fragment也有自己的生命周期
+        一个Activity可以有多个Fragment，而多个Fragment叠加在一起那么就类似与Activity的返回栈，
+        而点击回退键的时候就会依次展示在最上层的Fragment
+
+Fragment的使用
+
+    1、静态添加Fragment
+        -先创建一个Fragment基类，在onCreateView方法中添加XML布局文件
+         在Activity的布局文件中添加<fragment>标签，添加name属性与id属性。
+         name属性指定要添加的FragmentLayout关联的Fragment类，
+         id属性给Activity指定需要关联的Fragment
+         Activity通过id属性找到fragment标签，在有fragment标签找到与Fragment关联的XML布局文件
+
+    2、运行时动态替换Fragment
+        Activity的XML文件中必须通过<FrameLayout>标签来展示fragment
+        -先创建一个Fragment基类，在onCreateView方法中添加XML布局文件
+        -在Activity中实例化Fragment基类，根据getSupportFragmentManager();得到Fragment管理类
+
+        -通过FragmentManager.beginTransaction();开启一个事务
+        -通过fragmentTransaction.add添加一个事务：
+            参数为：需要将xml文件通过Activity中的<FrameLayout>标签展示在View中
+                   需要展示的Fragment在Activity中的实例化对象
+
+        fragment每次动态添加都需要开启一个新事务
+
+        将fragment添加进事务的方法
+        add       添加一个fragment：在上一个的基础上在加入一个fragment
+        replace   替换此 fragment: 将上一个fragment移除再将这个fragment加入
+
+
+
+
+
+Fragment的回退栈
+        -通过Fragment的回退栈，可以当点击回退按钮时返回上一个添加的fragment中
+        通过事务.addToBackStack方法可以将这个Fragment添加到回退栈中，那么回退的时候返回的就是上一个添加到栈中的Fragment
+                                      不使用此方法点击回退，那么就会直接退出程序
+                                      参数为null
+
+
+
+Fragment的生命周期
+
+onAttach-->onCreate-->onCreateView-->onActivityCreate-->onStart-->
+onResume-->onPause-->onStop-->onDestroyView-->onDestroy-->onDetach
+
+
+fragment与Activity关联-->创建fragment-->绘制FragmentXML文件-->当Activity启动完成-->前台可见
+fragment获取焦点-->fragment失去焦点-->fragment后台可见-->fragment销毁XML文件-->Fragment销毁-->fragment被Activity删除，
+
+
+Fragment与Activity的交互
+   与Activity绑定的Fragment
+    -在fragment中通过getActivity得到与Fragment绑定的Activity对象
+        在Activity写一个设置参数的方法，在fragment调用此方法来跟新Activity中的数据
+      通过接口回调实现数据更新
+      在Fragment定义接口，接口定义返回的方法及返回的数据类型，Activity实现此接口，在Fragment的onAttach中将数据回调给Activity
+
+
+
+
+
+    -在Activity中直接通过fragment.属性操作与此Activity绑定的Fragment
+
+    绑定同一个Activity的不同Fragment直接按交互
+        -通过将fragment中的数据保存到Activity中，通过Activity中转
+
+
+Fragment 之间的通信
+    3、在Afragment通过按钮添加Bfragment
+        A 中调用 onViewCreate 得到fragment的布局文件中的按钮，给按钮设置点击事件，
+        通过getFragmentManager得到Fragment管理类
+        管理类可管理栈中的fragment
+        通过Manager.beginTransaction得到事务
+        addToBackStack  将Fragment添加到fragment管理栈中
+        hide   隐藏一个Fragment 当设置隐藏之后，点击回退回到此fragment时不会重新绘制UI
+
+        add    添加一个Fragment
+        replace替换一个fragment
+
