@@ -11,85 +11,106 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.gsy.fragment.activity.MainActivity;
 
 /**
  * @author gsuiy
  * @create 2022-07-08 12:27
  */
 public class BaseFragment extends Fragment {
-    private static final String name = "BaseFragment :";
+    String TAG = "MainActivity";
+    private String TAG_FRAGMENT = getClass().getSimpleName() + "-";
     private Activity mActivity;
 
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        Log.i(TAG, TAG_FRAGMENT + "onAttach: ");
+        mActivity = (Activity) context;
+        //可以将Activity与Fragment绑定，也可以getActivity得到绑定的Activity
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.i("TAG", name+"--onCreate: 创建fragment");
+        Log.i(TAG, TAG_FRAGMENT + "onCreate: ");
+
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.i(TAG, TAG_FRAGMENT + "onStart: ");
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        Log.i(TAG, TAG_FRAGMENT + "onHiddenChanged: ");
+    }
+
+    // 返回fragment的布局文件给Activity
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Log.i("TAG", name+"--onCreateView: 返回需要显示的视图");
-        //返回fragment的布局文件给Activity
+        Log.i(TAG, TAG_FRAGMENT + "onCreateView: ");
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Log.i("TAG", name+"--onActivityCreated: 当所在的Activity启动完成");
+        Log.i(TAG, TAG_FRAGMENT + "onActivityCreated: ");
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-        Log.i("TAG", name+"--onStart: fragment前台可见");
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        Log.i("TAG", name+"--onResume: fragment得到焦点");
+        Log.i(TAG, TAG_FRAGMENT + "onResume: ");
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        Log.i("TAG", name+"--onPause: fragment失去焦点");
+        Log.i(TAG, TAG_FRAGMENT + "onPause: ");
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        Log.i("TAG", name+"--onStop: fragment后台可见");
+        Log.i(TAG, TAG_FRAGMENT + "onStop: ");
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        Log.i("TAG", name+"--onDestroyView: 销毁fragment的视图");
+        Log.i(TAG, TAG_FRAGMENT + "onDestroyView: ");
     }
 
     @Override
     public void onDestroy() {//销毁Fragment
         super.onDestroy();
-        //取消异步任务
-        Log.i("TAG", name+"--onDestroy: 销毁fragment");
-    }
-
-
-    @Override
-    public void onAttach(@NonNull Context context) {//此方法只调用一次
-        super.onAttach(context);
-        Log.i("TAG", name+"--onAttach: 与Activity绑定");
-        mActivity= (Activity) context;
-        //可以将Activity与Fragment绑定，也可以getActivity得到绑定的Activity
+        Log.i(TAG, TAG_FRAGMENT + "onDestroy: ");
     }
 
     @Override
-    public void onDetach() {//此方法只调用一次，与Activity解除关联
+    public void onDetach() {
         super.onDetach();
-        Log.i("TAG", name+"--onDetach: 与Activity解绑");
+        Log.i(TAG, TAG_FRAGMENT + "onDetach: ");
+    }
+
+    public FragmentTransaction getTransaction() {
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        if (MainActivity.needBackStack) {
+            transaction.addToBackStack(MainActivity.NAME_BACK_STACK);
+        }
+        return transaction;
     }
 }

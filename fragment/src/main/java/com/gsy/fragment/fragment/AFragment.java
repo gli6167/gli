@@ -14,13 +14,13 @@ import androidx.fragment.app.Fragment;
 
 import com.gsy.fragment.R;
 
-public class FirstFragment extends BaseFragment {
+public class AFragment extends BaseFragment {
     private View root;
     private Button btn_add_B_Fragment_F, btn_upData;
     private TextView tv_title_A_Fragment_F;
 
-    public static FirstFragment newInstance(String title) {
-        FirstFragment fragment = new FirstFragment();
+    public static AFragment newInstance(String title) {
+        AFragment fragment = new AFragment();
         Bundle bundle = new Bundle();
         bundle.putString("title", title);
         fragment.setArguments(bundle);
@@ -38,12 +38,12 @@ public class FirstFragment extends BaseFragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         iOnMessageClick = (IOnMessageClick) context;
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
         // Inflate the layout for this fragment
         root = inflater.inflate(R.layout.fragment_first, container, false);
         return root;
@@ -64,22 +64,27 @@ public class FirstFragment extends BaseFragment {
         btn_add_B_Fragment_F.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SecondFragment fragmentB = new SecondFragment();
-                Fragment a = getFragmentManager().findFragmentByTag("a");
-                if (a != null) {
-                    getFragmentManager().beginTransaction()
-                            .hide(a)//将Afragment视图隐藏那么回退之后就不会重新绘制视图
-                            .addToBackStack(null)
-                            .add(R.id.fl_shou_fragment_main, fragmentB)
-                            .commit();
-
-                } else {
-                    getFragmentManager().beginTransaction().add(R.id.fl_shou_fragment_main, fragmentB).commit();
-                }
-
+                addB();
             }
         });
+    }
 
 
+
+    private void addB() {
+        BFragment fragmentB = new BFragment();
+
+        getChildFragmentManager();
+        getParentFragmentManager();
+        Fragment a = getFragmentManager().findFragmentByTag("a"); // addList ->map
+        getFragmentManager().getFragments(); // addList
+        if (a != null) {
+            getTransaction()
+                    .remove(a)
+                    .add(R.id.fl_shou_fragment_main, fragmentB)
+                    .commit();
+        } else {
+            getTransaction().add(R.id.fl_shou_fragment_main, fragmentB).commit();
+        }
     }
 }

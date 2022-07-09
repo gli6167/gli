@@ -1,0 +1,14 @@
+ 视图：用来显示数据的矩形区域
+   View:          显示数据的矩形区域
+   ViewGroup:     显示子视图的矩形区域
+   视图的分类
+     容器控件：用来展示显示控件的
+     显示控件：用来显示数据
+
+ 布局：Activity中视图的排列方式
+   LinearLayout    线性布局     控件及视图在布局中线性排列       横排或竖排
+   RelativeLayout  相对布局     控件及视图在布局中随意排列       根据其他视图的位置确定本视图
+   FrameLayout     帧布局       控件及视图在布局中叠加排列       后面会覆盖前面的显示区域
+   AbsoluteLayout  绝对布局
+   TableLayout     表格布局     线性布局的一种，可以指定控件在线性排列的具体个数
+   ConstraintLayout约束布局

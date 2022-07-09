@@ -11,78 +11,99 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.gsy.fragment.R;
-import com.gsy.fragment.fragment.FirstFragment;
-import com.gsy.fragment.fragment.SecondFragment;
+import com.gsy.fragment.fragment.AFragment;
+import com.gsy.fragment.fragment.BFragment;
 
-public class MainActivity extends AppCompatActivity implements FirstFragment.IOnMessageClick {
-private Button btn_add_Fragment_main;
-private SecondFragment BFragment;
-private FirstFragment AFragment;
-private TextView tv_data;
-private static final String name = "MainActivity :";
+// hide
+// remove 移除对应的 如果添加后退站，影响生命周期
+// show
+// replace 把所有都remove,替换成添加的fragment
+// 后退栈影响 remove replace 和返回逻辑
+public class MainActivity extends AppCompatActivity implements com.gsy.fragment.fragment.AFragment.IOnMessageClick {
+    private Button btn_add_Fragment_main;
+    private com.gsy.fragment.fragment.BFragment BFragment;
+    private com.gsy.fragment.fragment.AFragment AFragment;
+    private TextView tv_data;
 
+    public static final String NAME_BACK_STACK = "main";
+    public static final boolean needBackStack = true;
+
+    private String TAG = "MainActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.i(TAG, TAG + "-onCreate: " + " Activity创建");
         setContentView(R.layout.activity_main);
-        btn_add_Fragment_main=findViewById(R.id.btn_add_Fragment_main);
-        tv_data=(TextView) findViewById(R.id.tv_data);
+        btn_add_Fragment_main = findViewById(R.id.btn_add_Fragment_main);
+        tv_data = (TextView) findViewById(R.id.tv_data);
 
-        AFragment = new FirstFragment();
-        FragmentManager supportFragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = supportFragmentManager.beginTransaction();
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.add(R.id.fl_shou_fragment_main,AFragment,"a");
-        fragmentTransaction.commitAllowingStateLoss();
+        addA();
         btn_add_Fragment_main.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BFragment = new SecondFragment();
-                getSupportFragmentManager().beginTransaction().addToBackStack(null).add(R.id.fl_shou_fragment_main,BFragment).commit();
+                addB();
             }
         });
-        Log.i("TAG", name+"onCreate: "+" Activity创建");
+    }
+
+    private void addB() {
+        BFragment = new BFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        if (needBackStack) {
+            transaction.addToBackStack(NAME_BACK_STACK);
+        }
+        transaction.add(R.id.fl_shou_fragment_main, BFragment).commit();
+    }
+
+    private void addA() {
+        AFragment = new AFragment();
+        FragmentManager supportFragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = supportFragmentManager.beginTransaction();
+        if (needBackStack) {
+            fragmentTransaction.addToBackStack(NAME_BACK_STACK);
+        }
+        fragmentTransaction.add(R.id.fl_shou_fragment_main, AFragment, "a");
+
+        fragmentTransaction.commitAllowingStateLoss();
     }
 
     @Override
     protected void onStart() {
+        Log.i(TAG, TAG + "-onStart: " + " Activity前台可见");
         super.onStart();
-        Log.i("TAG", name+"onStart: "+" Activity前台可见");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.i("TAG", name+"onResume: "+" Activity获取焦点");
-
+        Log.i(TAG, TAG + "-onResume: " + " Activity获取焦点");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Log.i("TAG", name+"onPause: "+" Activity失去焦点");
+        Log.i(TAG, TAG + "-onPause: " + " Activity失去焦点");
 
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        Log.i("TAG", name+"onRestart: " + " Activity准被进入前台");
+        Log.i(TAG, TAG + "-onRestart: " + " Activity准被进入前台");
 
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Log.i("TAG", name+"onStop: " + " Activity后台可见");
+        Log.i(TAG, TAG + "-onStop: " + " Activity后台可见");
 
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.i("TAG", name+"onDestroy: ");
-
+        Log.i(TAG, TAG + "-onDestroy: activity 销毁");
     }
 
     @Override

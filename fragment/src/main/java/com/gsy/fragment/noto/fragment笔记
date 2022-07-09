@@ -51,6 +51,46 @@ onResume-->onPause-->onStop-->onDestroyView-->onDestroy-->onDetach
 fragment与Activity关联-->创建fragment-->绘制FragmentXML文件-->当Activity启动完成-->前台可见
 fragment获取焦点-->fragment失去焦点-->fragment后台可见-->fragment销毁XML文件-->Fragment销毁-->fragment被Activity删除，
 
+Fragment与Activity的交互生命周期的执行过程
+ Fragment对象 ------- Fragment的实例  Fragment完整的生命周期
+ Fragment布局--------- onCreateView - >onDestroyView生命周期
+
+ 将Fragment添加到list集合中保存 -----页面跳转走此逻辑--按Back也走此逻辑
+
+   --Activity将自己的生命周期 通知 给FragmentManager类 由 FragmentManager来自动调用Fragment的生命周期
+         当Activity的生命周期进行改变时Fragment的生命周期一定会改变，且严格按照Activity的状态一步步改变
+         当Fragment的生命状态改变，Activity的生命周哦其状态不一定会跟着改变
+     FM将Fragment的生命周期分为6种状态，对应Activity的6种状态
+         onAttach-->onCreate-->onCreateView-->onActivityCreate-->准备
+         onStart-->界面进入前台
+         onResume-->界面得到焦点
+         onPause-->界面失去焦点
+         onStop-->界面进入后台
+         onDestroyView-->onDestroy-->onDetach-->销毁
+
+     hide ：隐藏此Fragment 此方法不调用生命周期
+     shou ：显示此Fragment 此方法不调用生命周期
+     replace ：移除与Activity的XML中FrameLayout布局相关联的Fragment对象,并添加一个新的Fragment对象与之关联
+               AF先失去焦点-->进入后台-->创建BF并进入前台可见状态-->AF销毁-->BF获取焦点
+               这与Activity的生命周期没有关系，因为Activity的生命周期一直再Resume状态
+     add ：在list中添加当前Fragment并显示
+           在之前的Fragment 对象之上再添加一个Fragment对象，之前的Fragment对象生命周期不变，一直在Resume状态，因为Activity的生命周期没变
+     remove : 移除当前Fragment对象实例
+     replace ：移除与Activity布局关联的Fragment对象，并将当前添加的Fragment对象与Activity布局关联
+
+  页面跳转只走list集合
+     remove 和 detach后 Activity 不会在显示此Fragment
+
+ 将数据添加到Fragment回退栈中  ：页面跳转走list集合---按Back会走此逻辑
+
+    -添加到回退栈的Fragment一定会添加到list集合中
+
+    replace ：移除与Activity布局关联的Fragment的布局，并将当前添加的Fragment对象与Activity布局关联
+              在回退栈中Fragment的对象还存在，所以当栈顶的Fragment退栈后，第二个Fragment会重新绘制View并显示在栈顶，而且显示的时候会将保存的数据也在View中显示出来
+    remove ：移除与当前Activity布局关联的Fragment的布局，但Fragment对象还在
+    add ：添加一个Fragment对象到栈顶并显示，且上一个Fragment的生命周期不变
+
+
 
 Fragment与Activity的交互
    与Activity绑定的Fragment
@@ -58,9 +98,6 @@ Fragment与Activity的交互
         在Activity写一个设置参数的方法，在fragment调用此方法来跟新Activity中的数据
       通过接口回调实现数据更新
       在Fragment定义接口，接口定义返回的方法及返回的数据类型，Activity实现此接口，在Fragment的onAttach中将数据回调给Activity
-
-
-
 
 
     -在Activity中直接通过fragment.属性操作与此Activity绑定的Fragment
@@ -77,7 +114,6 @@ Fragment 之间的通信
         通过Manager.beginTransaction得到事务
         addToBackStack  将Fragment添加到fragment管理栈中
         hide   隐藏一个Fragment 当设置隐藏之后，点击回退回到此fragment时不会重新绘制UI
-
         add    添加一个Fragment
         replace替换一个fragment
 
