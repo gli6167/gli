@@ -2,13 +2,82 @@
    View:          显示数据的矩形区域
    ViewGroup:     显示子视图的矩形区域
    视图的分类
-     容器控件：用来展示显示控件的
-     显示控件：用来显示数据
+     容器控件：用来展示显示控件的控件
+     显示控件：用来显示数据的控件
 
- 布局：Activity中视图的排列方式
+ 布局：Activity中定义视图的排列方式
    LinearLayout    线性布局     控件及视图在布局中线性排列       横排或竖排
    RelativeLayout  相对布局     控件及视图在布局中随意排列       根据其他视图的位置确定本视图
    FrameLayout     帧布局       控件及视图在布局中叠加排列       后面会覆盖前面的显示区域
    AbsoluteLayout  绝对布局
    TableLayout     表格布局     线性布局的一种，可以指定控件在线性排列的具体个数
    ConstraintLayout约束布局
+
+   选择器 Selector
+    通过设置选择器可使控件在不同操作下显示不同样式，选择器通过XML编写
+
+   布局形状 Shape ： 设置控件的颜色、边框线，通过Xml编写
+
+
+ 基本显示控件
+   TextView     文本控件   展示文本
+   EditText     文本控件   可编辑文本
+
+   Button       按钮控件   点击跳转页面            仅显示文本
+   imagerButton 图片按钮   点击跳转页面            仅显示图片资源 及 drawable资源
+   Button       文本+图片按钮 点击跳转页面          显示文本+图片资源及drawable资源
+
+                                                通过使用button的drawable+上下左右进行资源在文本方向的设定
+
+   RadioButton  单选按钮      有一个选中的属性Checked  单选按钮可让用户从一系列选项中选择一个选项
+   RadioGroup   单选按钮框
+   CheckBar     复选按钮      有一个选中的属性Checked  复选框可让用户从一系列选项中选择一个或多个选项。通常，您应以垂直列表形式显示每个复选框选项
+                             只有俩种状态的按钮，选中或未选中。一个的选中并不会影响另一个选中或者不选中
+   ChickBox与RadioGroup的区别
+        ChickBox复选框                            RadioGroup单选按钮框组
+        选中后通过点击可以改变为未选中                选中后通过点击无法变为未选中
+        在一组中可以同时选中多个                     在一组中只能同时选中一个
+        可以右多个点击监听事件                       只能有一个点击监听事件
+
+
+
+   ImagerView   图片控件     显示图片
+
+
+
+
+   ProgressBar  进度条控件   展示进度条     在Activity上展示一个进度条，用户不可操作
+                默认为圆型进度条,通过style  属性将进度条设置为水平进度条
+
+   SeekBar      进度条控件   可交互进度条   用户可以对展示的进度条进行手动拖动
+
+
+
+
+   Dialog    对话框    提示用户数去的小窗体，只有当用户输入或点击对话框之后才能进行下一步操作。
+   AlertDialog      显示文字对话框   主要分三部分 title标题   Massage内容  button 按钮 可以自定义
+                    自定义对话框：先创建想要显示的XML文件，然后通过对话框的setView属性将自定义的Xml文件显示在对话框上
+   ProgressDialog   显示进度对话框   显示下载进度
+   DataDialog       显示日期对话框
+   TimeDialog       显示事件对话框
+
+
+
+   Menu  菜单
+         选项菜单    是应用的主菜单项，用于放置对应用起全局影响的操作，如搜索/设置等操作按钮
+                    直接在Activity中创建菜单
+                    1、onCreateOptionsMenu创建一个菜单
+                       通过this.getMenuInflater().inflate(R.menu.menu,menu);将Xml中的菜单布局添加到菜单上，返回true显示出来
+                    2、onOptionsItemSelected给菜单中的选项设置点击监听
+                       通过getItemId 获取选项菜单的各选项，并作出对应的点击操作，返回true
+
+         上下文菜单  是用户长按某一元素出现的浮动菜单。它提供的操作将影响所选内容,主要搭配列表中的某一元素使用 ListView RecycleView 中的数据元素
+                   1、给ListView或RecycleView设置长按监听
+                   2、在监听里实现onCreateContextMenu 来创建一个菜单
+                   3、调用onContextItemSelected对列表中每一项数据进行监听
+
+         弹出式菜单  以垂直列表形式显示一系列操作选项，一般由某一控件触发
+                    1、 popupMenu = new PopupMenu(this,v) 创建弹出式菜单，选择要在那个View显示
+                    2、 popupMenu.getMenuInflater().inflate(R.menu.menu,popupMenu.getMenu());将Xml中的菜单布局添加到菜单上，返回true显示出来
+                    3、 popupMenu.setOnMenuItemClickListener 给菜单中的选项设置点击事件
+                    4、 onMenuItemClick 通过getItemId 获取选项菜单的各选项，并作出对应的点击操作，返回true

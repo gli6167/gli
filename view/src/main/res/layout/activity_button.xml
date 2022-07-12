@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.ButtonActivity">
+
+    <TextView
+        android:id="@+id/tv_shou_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="按钮控件测试界面"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/btn_text_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_shou_activity"
+        android:background="@color/teal_700"
+        android:text="文本按钮" />
+
+    <ImageButton
+        android:id="@+id/btn_image_button"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/btn_text_button"
+        android:background="@color/purple_200"
+        android:src="@drawable/ic_launcher_background" />
+
+    <Button
+        android:id="@+id/btn_text_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_image_button"
+        android:background="@color/purple_200"
+        android:drawableBottom="@mipmap/ic_launcher_round"
+        android:text="文本+图片按钮" />
+
+    <View
+        android:id="@+id/view_1"
+        android:layout_below="@id/btn_text_image"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/teal_700" />
+
+    <LinearLayout
+        android:id="@+id/ll_check_box"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view_1"
+
+        android:paddingLeft="20dp"
+        android:orientation="vertical">
+        <CheckBox
+            android:id="@+id/checkbox_meat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="复选框一" />
+
+        <CheckBox
+            android:layout_marginLeft="20dp"
+            android:id="@+id/checkbox_cheese"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="复选框二" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view_2"
+        android:layout_below="@id/ll_check_box"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/teal_700" />
+    <RadioGroup
+        android:id="@+id/rg_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@id/view_2">
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="单选框一"/>
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="单选框二"/>
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="单选框三"/>
+    </RadioGroup>
+    <View
+        android:id="@+id/view_3"
+        android:layout_below="@id/rg_button"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/teal_700" />
+
+    <ProgressBar
+        android:id="@+id/pb_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view_3"/>
+    <ProgressBar
+        android:id="@+id/pb_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_below="@id/pb_1"/>
+
+    <SeekBar
+        android:id="@+id/sb_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pb_2"
+        android:paddingBottom="20dp"
+        />
+
+    <Button
+        android:id="@+id/btn_shou_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="显示对话框"
+        android:layout_below="@id/sb_1"
+        android:background="@color/purple_200"/>
+
+
+
+
+
+
+
+
+
+
+</RelativeLayout>
