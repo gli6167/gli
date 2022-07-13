@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/teal_700"
+            android:gravity="center"
+            android:text="测试界面"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/btn_alpha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="给按钮添加透明动画" />
+
+        <Button
+            android:id="@+id/btn_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="给按钮添加透明动画" />
+
+
+        <ImageView
+            android:id="@+id/iv_xuanzhuan"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:background="@mipmap/iv_moren" />
+
+    </LinearLayout>
+
+</ScrollView>
