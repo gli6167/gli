@@ -1,7 +1,9 @@
 package com.gsy.animation.activity;
 
 import android.animation.AnimatorSet;
+import android.animation.Keyframe;
 import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -119,8 +121,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 AnimatorSet animatorSetScale = new AnimatorSet();
                 animatorSetScale.playTogether(scaleX,scaleY);
-                animatorSetScale.start();
+//                animatorSetScale.start();
 
+
+                Keyframe keyframe1 = Keyframe.ofFloat(0f,1f);
+                Keyframe keyframe2 = Keyframe.ofFloat(0.25f,2f);
+                Keyframe keyframe3 = Keyframe.ofFloat(0.5f,1f);
+                Keyframe keyframe4 = Keyframe.ofFloat(0.7f,0f);
+                Keyframe keyframe5 = Keyframe.ofFloat(1f,1f);
+
+                PropertyValuesHolder valuesHolderScaleX =PropertyValuesHolder.ofKeyframe(View.SCALE_X,keyframe1,keyframe2,keyframe3,keyframe4,keyframe5);
+                PropertyValuesHolder valuesHolderScaleY=PropertyValuesHolder.ofKeyframe(View.SCALE_Y,keyframe1,keyframe2,keyframe3,keyframe4,keyframe5);
+
+                ObjectAnimator objectAnimator = ObjectAnimator.ofPropertyValuesHolder(iv_xuanzhuan,valuesHolderScaleX,valuesHolderScaleY);
+                objectAnimator.setDuration(4000);
+//                objectAnimator.setRepeatMode(ObjectAnimator.RESTART);
+//                objectAnimator.setRepeatCount(ObjectAnimator.INFINITE);
+                objectAnimator.setInterpolator(new LinearInterpolator());
+//                objectAnimator.start();
+
+
+                int width = iv_xuanzhuan.getWidth();
+
+                Keyframe keyframe6 = Keyframe.ofFloat(0f,0);
+
+                Keyframe keyframe10 = Keyframe.ofFloat(1f,width);
+
+                PropertyValuesHolder valuesHolder =PropertyValuesHolder.ofKeyframe(View.TRANSLATION_X,keyframe6,keyframe10);
+
+                ObjectAnimator objectAnimator1 = ObjectAnimator.ofPropertyValuesHolder(iv_xuanzhuan,valuesHolder);
+                objectAnimator1.setDuration(2000);
+                objectAnimator1.setRepeatMode(ObjectAnimator.REVERSE);//设置重复播放的状态 REVERSE 往返  RESTART从头开始
+                objectAnimator1.setRepeatCount(ObjectAnimator.INFINITE);//设置重复播放次数 INFINITE一直重复
+                objectAnimator1.setInterpolator(new LinearInterpolator());//匀速播放
+                objectAnimator1.start();
                 break;
         }
     }
